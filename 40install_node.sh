@@ -1,6 +1,17 @@
 #!/bin/bash
 #source env variables including node version
-. /opt/elasticbeanstalk/env.vars
+export HOME=/root
+export NPM_CONFIG_LOGLEVEL=warn
+export NPM_CONFIG_COLOR=false
+export NPM_CONFIG_PRODUCTION=true
+#note node vesion in .elasticbeanstalk/*.jsons
+export NODE_VER=4.2.2
+case $( arch ) in
+( i686 ) export ARCH=x86;;
+( x86_64 ) export ARCH=x64;;
+esac
+export NGINX_VER=1.5.12
+export PATH="$PATH:/opt/elasticbeanstalk/node-install/node-v$NODE_VER-linux-$ARCH/bin/:/root/.npm:/opt/elasticbeanstalk/lib/ruby/bin/"
 
 function error_exit
 {
